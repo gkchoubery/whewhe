@@ -1,11 +1,16 @@
+.container {
+    padding: 4em 0;
+}
+
+.col-md-6 {
+    border-left: 0.5px solid black;
+}
+
 .col-md-6, .col-md-3 {
-    border-right-style: solid;
-    border-right-width: 0.5px;
-    border-right-color: black;
-    border-bottom-style: solid;
-    border-bottom-width: 0.5px;
-    border-bottom-color: black;
-    min-height: 95vh;
+    padding: 2em;
+    border-top: 0.5px solid black;
+    border-right: 0.5px solid black;
+    border-bottom: 0.5px solid black;
 }
 
 .btn {
