@@ -1,10 +1,12 @@
 import React from 'react';
+import './index.css';
 
 const TokenButton = ({ token, onTokenSelected }) => {
     const { value, selected } = token;
     return (
         <button
-            className={selected ? 'selected' : ''}
+            id={value}
+            className={selected ? 'btn btn-info' : 'btn btn-warning'}
             onClick={() => onTokenSelected(token)}>
             {value}
         </button>
