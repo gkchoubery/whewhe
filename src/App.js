@@ -71,6 +71,7 @@ function App() {
   return (
     <div className="container">
       <div className="row">
+        <CashInputComponent cashEnabled={cashEnabled} onCashButtonPressed={onCashButtonPressed} />
         <UserInputComponent tokens={tokens}
           toggleTokenSelection={toggleTokenSelection}
 
@@ -79,7 +80,7 @@ function App() {
           onRandomButtonClicked={onRandomButtonClicked}
           cashEnabled={cashEnabled} />
 
-        <CashInputComponent cashEnabled={cashEnabled} onCashButtonPressed={onCashButtonPressed} />
+
         <SummaryComponent tokens={tokens.filter(t => t.selected)} cash={cash} />
 
       </div>
