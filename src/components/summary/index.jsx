@@ -8,7 +8,7 @@ const SummaryComponent = ({ tokens = [], cash = 0 }) => {
 
     return (
         <div className="col-md-3">
-            <h3>Numbers selected:</h3>
+            <h3>Numbers Selected:</h3>
             {dom}
             Total Cash: ${cash}
         </div>

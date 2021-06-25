@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import UserInputComponent from './components/input';
+import CashInputComponent from './components/cashInput';
 import SummaryComponent from './components/summary';
 
 const MAX_SELECTIONS = 5;
+const MAX_TOKENS = 20;
 
 function App() {
 
@@ -21,9 +23,9 @@ function App() {
     clearCash();
   }
 
-  const clearCash = () => {
+  const clearCash = (enableCash = false) => {
     setCash(0);
-    setCashEnabled(false);
+    setCashEnabled(enableCash);
   }
 
   const onCashButtonPressed = (value = 0) => {
@@ -38,6 +40,11 @@ function App() {
   const onCashSummaryClicked = () => {
     const selectedNumbers = tokens.filter(t => t.selected).map(t => t.value).join(', ');
     alert(`You selected the numbers: ${selectedNumbers} and bet $${cash}`);
+  }
+
+  const onRandomButtonClicked = () => {
+    setTokens(randomNumbers(tokens));
+    clearCash(true);
   }
 
   const toggleTokenSelection = (token) => {
@@ -66,11 +73,13 @@ function App() {
       <div className="row">
         <UserInputComponent tokens={tokens}
           toggleTokenSelection={toggleTokenSelection}
-          onCashButtonPressed={onCashButtonPressed}
+
           onClearClicked={onClearClicked}
           onCashSummaryClicked={onCashSummaryClicked}
+          onRandomButtonClicked={onRandomButtonClicked}
           cashEnabled={cashEnabled} />
 
+        <CashInputComponent cashEnabled={cashEnabled} onCashButtonPressed={onCashButtonPressed} />
         <SummaryComponent tokens={tokens.filter(t => t.selected)} cash={cash} />
 
       </div>
@@ -78,13 +87,26 @@ function App() {
   );
 }
 
-const defaultTokens = [...Array(20).keys()].map(v => ({
+const defaultTokens = [...Array(MAX_TOKENS).keys()].map(v => ({
   value: v + 1,
   selected: false
 }));
 
 const canSelectTokens = (tokens = []) => {
   return tokens.filter(t => t.selected).length < MAX_SELECTIONS;
+}
+
+const randomNumbers = (allTokens) => {
+  const RANDOM_NUMBER_COUNT = 5;
+  const randomNumbers = [];
+  while (randomNumbers.length < RANDOM_NUMBER_COUNT) {
+    let r = Math.floor(Math.random() * MAX_TOKENS) + 1;
+    if (randomNumbers.indexOf(r) === -1) randomNumbers.push(r);
+  }
+  return allTokens.map(({ value }) => ({
+    value,
+    selected: randomNumbers.includes(value)
+  }));
 }
 
 const toggleSelection = (token, tokens = []) => {
