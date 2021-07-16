@@ -10,9 +10,7 @@ jobs:
       - image: cimg/node:15.1
     steps:
       - checkout
-      - node/with-cache:
-        steps:
-          - run: npm ci
+      - node/install-packages
       - run:
           name: Run Lint checks
           command: npm run lint
