@@ -3,14 +3,16 @@
 }
 
 .col-md-6 {
-    border-left: 0.5px solid black;
+    border-top: 0.5px solid black;
+    border-bottom: 0.5px solid black;
+}
+
+.col-md-3 {
+    border: 0.5px solid black;
 }
 
 .col-md-6, .col-md-3 {
     padding: 2em;
-    border-top: 0.5px solid black;
-    border-right: 0.5px solid black;
-    border-bottom: 0.5px solid black;
 }
 
 .btn {
